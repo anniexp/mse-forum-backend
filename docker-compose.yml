@@ -1,0 +1,46 @@
+version: '3'
+services:
+  my-postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=93773621
+      - POSTGRES_DB=forum
+    networks:
+      - forum
+    volumes:
+      - ../data :/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    networks:
+      - forum
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - my-postgres
+    networks:
+      - forum
+  react-ui:
+    build:
+      context: ../forum-frontend-instr/forum-mse-2023-ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: react-ui
+    depends_on:
+      - backend
+    networks:
+      - forum
+networks:
+    forum:
