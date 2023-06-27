@@ -10,8 +10,8 @@ All dependencies are made in the pom.xml file. Some of the dependencies - Spring
 The project has a Dockerfile which has instructions for creating a Docker Image of the app, which is later pushed remotely to [Dockerhub](https://hub.docker.com/)https://hub.docker.com/.
 
 CRUD API endpoints :
-http://localhost:8081/api/topics 
-http://localhost:8081/api/topics/{topicId}
-http://localhost:8081/api/topics/{topicId}/replies
-http://localhost:8081/api/topics/{topicId}/replies/{replyId}
-http://localhost:8081/api/users/register
+ - http://localhost:8081/api/topics 
+ - http://localhost:8081/api/topics/{topicId}
+ - http://localhost:8081/api/topics/{topicId}/replies
+ - http://localhost:8081/api/topics/{topicId}/replies/{replyId}
+ - http://localhost:8081/api/users/register
